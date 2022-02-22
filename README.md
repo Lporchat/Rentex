@@ -1,9 +1,9 @@
 # Cadastro de Carro
- 
+
 **Requisitos Funcionais**
 Deve ser possivel cadastrar um novo carro.
 Deve ser possivel lista todos as categorias.
- 
+
 **Regras de negocios**
 Não deve ser possivel cadastrar um novo carro ja cadastrada.
 Não deve ser possivel alterar a placa de um carro ja cadastrado.
@@ -17,7 +17,6 @@ Deve ser possivel listar os carros disponiveis.
 Deve ser possivel listar os carros disponiveis pela categoria.
 Deve ser possivel listar os carros disponiveis pela marca.
 Deve ser possivel listar os carros disponiveis pelo nome do carro.
-
 
 **Regras de negocios**
 Não deve esta logado para ver a listagem.
@@ -47,14 +46,13 @@ Utilizar o multer para fazer o upload da imagem;
 deve ser possivel cadastrar mais de uma imagem para o mesmo carro
 Para cadastrar tem que ser um usuario nivel ADM.
 
-
 # Aluguel de carro
 
 **Requisitos Funcionais**
 Deve ser possivel cadastrar um Aluguel.
 
-
 **Regras de negocios**
 O aluguel deve ter no minimo 24 horas de duração.
 Não deve ser possivel cadastrar um novo aluguel caso ja tenha um aberto para o usuario.
 Não deve ser possivel cadastrar um novo aluguel caso ja tenha um aberto para o carro.
+O usuario deve estar logado na aplicação.
