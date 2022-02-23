@@ -10,7 +10,7 @@ interface IRequest {
   expected_return_date: Date;
 }
 @injectable()
-class CreateRentalsUseCase {
+class CreateRentalUseCase {
   constructor(
     @inject("RentalsRepository")
     private rentalRepository: IRentalsRepository,
@@ -60,4 +60,4 @@ class CreateRentalsUseCase {
   }
 }
 
-export { CreateRentalsUseCase };
+export { CreateRentalUseCase };

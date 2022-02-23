@@ -3,7 +3,6 @@ import { ICreateRentalDTO } from "../../../dtos/ICreateRentalDTO";
 import { IRentalsRepository } from "../../../repositories/IRentalsRepository";
 import { Rental } from "../entities/Rental";
 
-
 class RentalsRepository implements IRentalsRepository {
   private repository: Repository<Rental>;
 
