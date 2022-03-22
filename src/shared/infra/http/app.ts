@@ -5,11 +5,12 @@ import swaggerUI from "swagger-ui-express";
 import morgan from "morgan";
 import { router } from "./routes";
 import swaggerFile from "../../../swagger.json";
-import "../typeorm";
+import createConnection from "../typeorm";
 
 import "../../container";
 import { AppError } from "../../errors/AppError";
 
+createConnection();
 const app = express();
 
 app.use(express.json());
@@ -22,12 +23,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({ message: err.message });
   }
-  return res
-    .status(500)
-    .json({
-      status: "Error",
-      message: `Internal Server Error: ${err.message}`,
-    });
+  return res.status(500).json({
+    status: "Error",
+    message: `Internal Server Error: ${err.message}`,
+  });
 });
 
 export { app };

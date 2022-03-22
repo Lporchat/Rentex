@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "tsnd --ignore-watch node_modules --transpile-only --respawn src/shared/infra/http/server.ts",
     "orm": "tsnd ./node_modules/typeorm/cli",
-    "admin": "tsnd src/shared/infra/typeorm/admin/admin.ts"
+    "admin": "tsnd src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
