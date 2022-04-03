@@ -8,9 +8,10 @@ import { v4 } from "uuid";
 
 let connection: Connection;
 
-describe("Create Category controller", () => {
+describe("List Category controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
+
     await connection.runMigrations();
 
     const id = v4();
@@ -27,7 +28,7 @@ describe("Create Category controller", () => {
     await connection.close();
   });
 
-  it("should be able to create a new category", async () => {
+  it("should be able to list a category", async () => {
     const Responsetoken = await request(app).post("/sessions").send({
       password: "ad10le06",
       email: "lporchat06@gmail.com",
@@ -35,39 +36,24 @@ describe("Create Category controller", () => {
 
     const { token } = Responsetoken.body;
 
-    const response = await request(app)
+    console.log(token);
+
+    await request(app)
       .post("/categories")
       .send({
-        name: "ad10le06dd66",
-        description: "lporchat06@gmail.com",
+        name: "leonardo",
+        description: "leonardo",
       })
       .set({
         Authorization: `Bearer ${token}`,
       });
 
-    expect(response.statusCode).toBe(201);
-    // console.log(response);
-  });
+    const response = await request(app).get("/categories");
+    // console.log(response.body);
 
-  it("should not be able to create a new category with name exists", async () => {
-    const Responsetoken = await request(app).post("/sessions").send({
-      password: "ad10le06",
-      email: "lporchat06@gmail.com",
-    });
-
-    const { token } = Responsetoken.body;
-
-    const response = await request(app)
-      .post("/categories")
-      .send({
-        name: "ad10le06dd66",
-        description: "lporchat06@gmail.com",
-      })
-      .set({
-        Authorization: `Bearer ${token}`,
-      });
-
-    expect(response.statusCode).toBe(400);
-    // console.log(response);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.length).toBe(1);
+    expect(response.body[0]).toHaveProperty("id");
+    expect(response.body[0].name).toEqual("leonardo");
   });
 });
