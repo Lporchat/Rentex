@@ -3,62 +3,65 @@ import { Car } from "../../infra/typeorm/entities/Car";
 import { ICarsRepository } from "../ICarsRepository";
 
 class CarsRepositoryInMemory implements ICarsRepository {
+  cars: Car[] = [];
+  async create({
+    name,
+    description,
+    daily_rate,
+    license_plate,
+    fine_amount,
+    brand,
+    category_id,
+    id,
+  }: ICreateCarDTO): Promise<Car> {
+    const car = new Car();
 
+    Object.assign(car, {
+      name,
+      description,
+      daily_rate,
+      license_plate,
+      fine_amount,
+      brand,
+      category_id,
+    });
 
-    cars: Car[] = []
-    async create({ name,
-        description,
-        daily_rate,
-        license_plate,
-        fine_amount,
-        brand,
-        category_id,
-        id
-    }: ICreateCarDTO): Promise<Car> {
-        const car = new Car();
+    this.cars.push(car);
 
-        Object.assign(car, {
-            name,
-            description,
-            daily_rate,
-            license_plate,
-            fine_amount,
-            brand,
-            category_id
-        });
+    return car;
+  }
 
-        this.cars.push(car);
+  async findByLicensePlate(license_plate: string): Promise<Car> {
+    return this.cars.find((car) => car.license_plate === license_plate);
+  }
 
-        return car
-    }
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
+    const cars = this.cars.filter((car) => {
+      if (
+        car.available == true ||
+        (brand && car.brand == brand) ||
+        (category_id && car.category_id == category_id) ||
+        (name && car.name == name)
+      ) {
+        return car;
+      }
+      return null;
+    });
+    return cars;
+  }
 
-    async findByLicensePlate(license_plate: string): Promise<Car> {
-        return this.cars.find((car) => car.license_plate === license_plate)
-    }
+  async findById(id: string): Promise<Car> {
+    return this.cars.find((car) => car.id === id);
+  }
 
-    async findAvailable(brand?: string, category_id?: string, name?: string): Promise<Car[]> {
-
-
-        const cars = this.cars.filter((car) => {
-            if (
-                car.available == true ||
-                ((brand && car.brand == brand) ||
-                    (category_id && car.category_id == category_id) ||
-                    (name && car.name == name))
-            ) {
-                return car;
-            }
-            return null
-        })
-        return cars
-    }
-
-
-    async findById(id: string): Promise<Car> {
-        return this.cars.find((car) => car.id === id)
-    }
-
+  async updatedAvailable(id: string, available: boolean): Promise<void> {
+    const findIndex = this.cars.findIndex((car) => car.id === id);
+    this.cars[findIndex].available = available;
+  }
 }
 
-export { CarsRepositoryInMemory }
-
+export { CarsRepositoryInMemory };
