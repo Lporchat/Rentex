@@ -36,7 +36,6 @@ describe("List Category controller", () => {
 
     const { token } = Responsetoken.body;
 
-    console.log(token);
 
     await request(app)
       .post("/categories")
