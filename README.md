@@ -71,3 +71,12 @@ Ao realizar a devolução, devera ser calculado o valor total do aluguel.
 Caso o horario de devolução seja superior ao horario previsto da entrega, devera ser cobrado uma taxa proporcional.
 Em caso de multa devera ser adicionado ao valor do aluguel.
 O usuario deve estar logado na aplicação.
+
+
+# Listagem de alugueis para o usuario
+
+**Requisitos Funcionais**
+Deve ser possivel realizar a busca de todos os alugueis de um determinado usuario 
+
+**Regras de negocios**
+O usuario deve estar logado na aplicação;
