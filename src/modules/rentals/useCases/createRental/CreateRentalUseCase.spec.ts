@@ -29,7 +29,7 @@ describe("Create Rental", () => {
       name: "Test",
       description: "Car Test",
       daily_rate: 100,
-      license_plate: "GTD-4234",
+      license_plate: "LTZ855-4234",
       fine_amount: 40,
       category_id: "2444",
       brand: "Brand",
@@ -56,7 +56,7 @@ describe("Create Rental", () => {
         car_id: "121212",
         expected_return_date: dayAdd24Hours,
       })
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError("User Already a Rental"));
   });
 
   it("Should not be able to create a new rental if there is another open to the same car", async () => {
@@ -72,7 +72,7 @@ describe("Create Rental", () => {
         car_id: "test",
         expected_return_date: dayAdd24Hours,
       })
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError("Car Is Unavailable"));
   });
 
   it("Should not be able to create a new rental with a invalid return time", async () => {
@@ -82,6 +82,6 @@ describe("Create Rental", () => {
         car_id: "test",
         expected_return_date: dayjs().toDate(),
       })
-    ).rejects.toBeInstanceOf(AppError);
+    ).rejects.toEqual(new AppError("Invalid return time"));
   });
 });
