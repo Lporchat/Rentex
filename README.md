@@ -80,3 +80,15 @@ Deve ser possivel realizar a busca de todos os alugueis de um determinado usuari
 
 **Regras de negocios**
 O usuario deve estar logado na aplicação;
+
+
+# Recuperação de senha
+
+**Requisitos Funcionais**
+Deve ser possivel o suario recuperar a senha informando o email
+O usuario deve receber um email com o passo a passo de como recuperar a senha
+O usuario deve conseguir inserir uma nova senha
+
+**Regras de negocios**
+O usuario precisa informa a nova senha
+O link enviado para recuperação deve expirar em 3 horas
