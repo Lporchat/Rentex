@@ -7,7 +7,7 @@
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles",
     "start": "tsnd --ignore-watch node_modules --transpile-only --respawn src/shared/infra/http/server.ts --poll",
     "orm": "tsnd ./node_modules/typeorm/cli",
-    "admin": "tsnd src/shared/infra/typeorm/seed/admin.ts"
+    "adm": "tsnd src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.4",

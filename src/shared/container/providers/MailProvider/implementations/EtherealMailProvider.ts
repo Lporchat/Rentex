@@ -8,19 +8,7 @@ import fs from "fs";
 class EtherealMailProvider implements IMailProvider {
   private client: Transporter;
   constructor() {
-    nodemailer
-      .createTestAccount()
-      .then((account) => {
-        const transporter = nodemailer.createTransport({
-          host: account.smtp.host,
-          port: account.smtp.port,
-          secure: account.smtp.secure,
-          auth: { user: account.user, pass: account.pass },
-        });
-
-        this.client = transporter;
-      })
-      .catch((err) => console.error(err));
+    this.createClient();
   }
   async sendMail(
     to: string,
@@ -44,6 +32,24 @@ class EtherealMailProvider implements IMailProvider {
     console.log("Message sent: %s", message.messageId);
     // Preview only available when sending through an Ethereal account
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
+  }
+
+  private async createClient() {
+    try {
+      const account = await nodemailer.createTestAccount();
+
+      this.client = nodemailer.createTransport({
+        host: account.smtp.host,
+        port: account.smtp.port,
+        secure: account.smtp.secure,
+        auth: {
+          user: account.user,
+          pass: account.pass,
+        },
+      });
+    } catch (err) {
+      console.error(`EtherealMailProvider - Error:\n${err}`);
+    }
   }
 }
 export { EtherealMailProvider };

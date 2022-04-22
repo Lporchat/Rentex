@@ -34,7 +34,7 @@ describe("List Category controller", () => {
       email: "lporchat06@gmail.com",
     });
 
-    const { token } = Responsetoken.body;
+    const { refresh_token } = Responsetoken.body;
 
 
     await request(app)
@@ -44,7 +44,7 @@ describe("List Category controller", () => {
         description: "leonardo",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     const response = await request(app).get("/categories");

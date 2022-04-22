@@ -33,7 +33,7 @@ describe("Create Category controller", () => {
       email: "lporchat06@gmail.com",
     });
 
-    const { token } = Responsetoken.body;
+    const { refresh_token } = Responsetoken.body;
 
     const response = await request(app)
       .post("/categories")
@@ -42,7 +42,7 @@ describe("Create Category controller", () => {
         description: "lporchat06@gmail.com",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     expect(response.statusCode).toBe(201);
@@ -55,7 +55,7 @@ describe("Create Category controller", () => {
       email: "lporchat06@gmail.com",
     });
 
-    const { token } = Responsetoken.body;
+    const { refresh_token } = Responsetoken.body;
 
     const response = await request(app)
       .post("/categories")
@@ -64,7 +64,7 @@ describe("Create Category controller", () => {
         description: "lporchat06@gmail.com",
       })
       .set({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${refresh_token}`,
       });
 
     expect(response.statusCode).toBe(400);
