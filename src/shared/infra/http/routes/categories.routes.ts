@@ -6,26 +6,30 @@ import { ListCategoryController } from "../../../../modules/cars/useCases/listCa
 import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
-
-
-
-
-
 const categoriesRoutes = Router();
 
 const upload = multer({
-    dest: "./temp",
-})
+  dest: "./tmp",
+});
 const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
 const listCategoryController = new ListCategoryController();
 
-categoriesRoutes.post("/", ensureAuthenticated, ensureAdmin, createCategoryController.handle);
+categoriesRoutes.post(
+  "/",
+  ensureAuthenticated,
+  ensureAdmin,
+  createCategoryController.handle
+);
 
-categoriesRoutes.get("/", listCategoryController.handle)
+categoriesRoutes.get("/", listCategoryController.handle);
 
-categoriesRoutes.post("/import", upload.single("file"), ensureAuthenticated, ensureAdmin, importCategoryController.handle)
+categoriesRoutes.post(
+  "/import",
+  upload.single("file"),
+  ensureAuthenticated,
+  ensureAdmin,
+  importCategoryController.handle
+);
 
 export { categoriesRoutes };
-
-
