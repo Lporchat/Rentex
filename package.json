@@ -13,6 +13,7 @@
     "@types/nodemailer": "^6.4.4",
     "aws-sdk": "^2.1120.0",
     "bcrypt": "^5.0.1",
+    "class-transformer": "^0.5.1",
     "cross-env": "^7.0.3",
     "csv-parse": "^5.0.3",
     "csv-parser": "^3.0.0",
