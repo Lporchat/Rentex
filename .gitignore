@@ -1,3 +1,6 @@
 /.env
 /node_modules
-/tmp
+/tmp/*
+/coverege
+!tmp/.gitkeep
+/dist
