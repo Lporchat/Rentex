@@ -4,7 +4,7 @@ import createConnection from "../index";
 
 async function create() {
   //bug do docker com typeorm que é de vez em quando precisa trocar para host para "localhost" em vez de "database" como a imagem do docker
-  const connection = await createConnection("localhost");
+  const connection = await createConnection();
 
   const id = v4();
   const password = await hash("ad10le06", 8);

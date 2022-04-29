@@ -16,7 +16,7 @@ createConnection();
 const app = express();
 
 app.use(express.json());
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
