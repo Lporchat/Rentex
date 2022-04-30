@@ -1,4 +1,4 @@
-/.env
+/.env;exemple
 /node_modules
 /tmp/*
 /coverege
